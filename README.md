@@ -1,3 +1,13 @@
+---
+title: Azure Ops Copilot
+emoji: 🤖
+colorFrom: blue
+colorTo: purple
+sdk: docker
+app_port: 7860
+pinned: false
+---
+
 # Azure Ops Copilot
 
 An agentic AI application that acts as a DevOps assistant for Azure. It uses the Azure Agent Framework, Semantic Kernel, and Model Context Protocol (MCP) to analyze alerts, inspect configurations, and suggest fixes.
