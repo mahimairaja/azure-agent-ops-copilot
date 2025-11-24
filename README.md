@@ -242,3 +242,5 @@ Made with ❤️ by [Mahimai Raja](https://github.com/mahimairaja)
 </div>
 
 <!-- GitAds-Verify: VIVV41E1HZNR79X9D2L6V5UZ8GCI1X14 -->
+## GitAds Sponsored
+[![Sponsored by GitAds](https://gitads.dev/v1/ad-serve?source=mahimairaja/azure-agent-ops-copilot@github)](https://gitads.dev/v1/ad-track?source=mahimairaja/azure-agent-ops-copilot@github)
