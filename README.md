@@ -34,7 +34,7 @@ An agentic AI application that acts as a DevOps assistant for Azure. It uses the
     ```
 
 2.  **Configure Environment**:
-    Copy `.env.template` to `.env` (or create it) and add your Azure OpenAI keys.
+    Copy `.env.example` to `.env` (or create it) and add your Azure OpenAI keys.
     ```bash
     AZURE_OPENAI_ENDPOINT=...
     AZURE_OPENAI_API_KEY=...
@@ -50,12 +50,12 @@ An agentic AI application that acts as a DevOps assistant for Azure. It uses the
 4.  **Run the Application**:
     Start the API:
     ```bash
-    uv run python src/api/main.py
+    uv run python src/backend/app.py
     ```
 
     Start the UI (in a separate terminal):
     ```bash
-    uv run python src/ui/app.py
+    uv run python src/frontend/app.py
     ```
 
 ## Usage
