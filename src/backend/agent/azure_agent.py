@@ -9,7 +9,7 @@ from semantic_kernel.connectors.ai.function_choice_behavior import (
 )
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion
 from semantic_kernel.functions import kernel_function
-from services.mcp_client import MCPClient
+from services.mcp_client import MCPClient  # type: ignore
 
 load_dotenv()
 mcp_client = MCPClient()

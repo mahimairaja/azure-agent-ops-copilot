@@ -1,6 +1,6 @@
 import logging
 
-from agent.azure_agent import run_agent
+from agent.azure_agent import run_agent  # type: ignore
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 
