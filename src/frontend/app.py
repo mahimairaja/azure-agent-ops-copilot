@@ -187,10 +187,10 @@ with gr.Blocks(
                     "Suggest a fix for high CPU on vm-01",
                     "What alerts do we have?",
                 ],
-                type="messages",
+                type="messages",  # type: ignore
                 chatbot=gr.Chatbot(
                     height=500,
-                    show_copy_button=True,
+                    show_copy_button=True,  # type: ignore
                     avatar_images=(
                         None,
                         "https://em-content.zobj.net/source/twitter/376/robot_1f916.png",
