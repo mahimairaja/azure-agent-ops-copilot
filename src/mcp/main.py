@@ -40,6 +40,28 @@ def generate_fix(issue_type: str, resource_type: str) -> str:
 
 
 @mcp.tool()
+def get_all_logs() -> str:
+    """
+    Get all recent Azure Monitor logs/alerts.
+    Use this to summarize alerts or get an overview of all alerts.
+    """
+    if LOGS_FILE.exists():
+        return LOGS_FILE.read_text()
+    return "[]"
+
+
+@mcp.tool()
+def get_all_resource_configs() -> str:
+    """
+    Get all Azure resource configurations.
+    Use this to get an overview of all resources.
+    """
+    if CONFIGS_FILE.exists():
+        return CONFIGS_FILE.read_text()
+    return "[]"
+
+
+@mcp.tool()
 def integration_placeholder(service_name: str, action: str) -> str:
     """
     Placeholder for future integrations (e.g., Jira, ServiceNow).
