@@ -1,0 +1,122 @@
+[
+  {
+    "id": "alert-001",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Sql/servers/sql-01/databases/db-01",
+    "description": "High CPU usage detected (95%)",
+    "created_at": "2025-11-24T07:44:05.852238",
+    "status": "New",
+    "properties": {
+      "metric_value": 100,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-002",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-01",
+    "description": "High CPU usage detected (95%)",
+    "created_at": "2025-11-24T07:40:05.852399",
+    "status": "New",
+    "properties": {
+      "metric_value": 86,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-003",
+    "severity": "Warning",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-01",
+    "description": "SQL Database DTU usage high (90%)",
+    "created_at": "2025-11-24T07:43:05.852404",
+    "status": "New",
+    "properties": {
+      "metric_value": 96,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-004",
+    "severity": "Warning",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-01",
+    "description": "App Service response time high (>2s)",
+    "created_at": "2025-11-24T07:42:05.852407",
+    "status": "New",
+    "properties": {
+      "metric_value": 100,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-005",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Sql/servers/sql-01/databases/db-01",
+    "description": "Disk space low (5% remaining)",
+    "created_at": "2025-11-24T07:19:05.852410",
+    "status": "New",
+    "properties": {
+      "metric_value": 90,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-006",
+    "severity": "Warning",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Sql/servers/sql-01/databases/db-01",
+    "description": "SQL Database DTU usage high (90%)",
+    "created_at": "2025-11-24T07:36:05.852412",
+    "status": "New",
+    "properties": {
+      "metric_value": 97,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-007",
+    "severity": "Warning",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-01",
+    "description": "App Service response time high (>2s)",
+    "created_at": "2025-11-24T06:50:05.852414",
+    "status": "New",
+    "properties": {
+      "metric_value": 91,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-008",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-01",
+    "description": "High CPU usage detected (95%)",
+    "created_at": "2025-11-24T07:04:05.852417",
+    "status": "New",
+    "properties": {
+      "metric_value": 89,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-009",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Web/sites/app-01",
+    "description": "High CPU usage detected (95%)",
+    "created_at": "2025-11-24T07:00:05.852419",
+    "status": "New",
+    "properties": {
+      "metric_value": 99,
+      "threshold": 80
+    }
+  },
+  {
+    "id": "alert-010",
+    "severity": "Critical",
+    "resource_id": "/subscriptions/sub-1/resourceGroups/rg-1/providers/Microsoft.Compute/virtualMachines/vm-01",
+    "description": "High CPU usage detected (95%)",
+    "created_at": "2025-11-24T07:03:05.852421",
+    "status": "New",
+    "properties": {
+      "metric_value": 93,
+      "threshold": 80
+    }
+  }
+]

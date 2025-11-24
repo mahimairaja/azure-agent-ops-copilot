@@ -9,6 +9,8 @@ dependencies = []
 [dependency-groups]
 backend = [
     "agent-framework>=1.0.0b251120",
+    "azure-ai-inference>=1.0.0b9",
+    "fastapi[standard]>=0.121.3",
     "semantic-kernel>=1.38.0",
 ]
 frontend = [
