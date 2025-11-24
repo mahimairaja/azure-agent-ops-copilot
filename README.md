@@ -6,6 +6,10 @@ colorTo: purple
 sdk: docker
 app_port: 7860
 pinned: false
+license: mit
+short_description: AI-Powered DevOps Assistant for Azure Operations
+tags:
+  - building-mcp-track-enterprise
 ---
 
 <div align="center">
