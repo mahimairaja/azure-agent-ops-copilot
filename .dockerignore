@@ -1,0 +1,56 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+ENV/
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Git
+.git/
+.gitignore
+.gitattributes
+
+# CI/CD
+.github/
+.pre-commit-config.yaml
+
+# Documentation
+docs/
+archieve/
+*.md
+!README.md
+
+# Tests
+tests/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Misc
+.DS_Store
+.env.local
+.env.*.local
+*.log
+.mypy_cache/
+.ruff_cache/
+uv.lock
+
+# Keep only necessary files
+!src/
+!data/
+!pyproject.toml
+!.env
+!Dockerfile

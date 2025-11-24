@@ -32,6 +32,7 @@ def analyze_alert_logic(alert_id: str) -> str:
 def get_resource_config_logic(resource_id: str) -> str:
     """
     Get the configuration of an Azure resource.
+    Supports both full resource IDs and short names (e.g., 'vm-01').
     """
     try:
         if not CONFIGS_FILE.exists():
@@ -40,7 +41,16 @@ def get_resource_config_logic(resource_id: str) -> str:
         with open(CONFIGS_FILE, "r") as f:
             configs = json.load(f)
 
+        # Try exact match first
         config = next((c for c in configs if c["resource_id"] == resource_id), None)
+
+        # If no exact match, try matching the end of the resource_id (for short names)
+        if not config:
+            config = next(
+                (c for c in configs if c["resource_id"].endswith(f"/{resource_id}")),
+                None,
+            )
+
         if not config:
             return f"Error: Resource {resource_id} not found."
 
@@ -54,13 +64,20 @@ def generate_fix_logic(issue_type: str, resource_type: str) -> str:
     Generate a fix for a specific issue type and resource type.
     Returns a Bicep or CLI snippet.
     """
-    # Simple template matching logic
-    if "cpu" in issue_type.lower() and "virtualmachines" in resource_type.lower():
+    # Normalize inputs for better matching
+    issue_lower = issue_type.lower()
+    resource_lower = resource_type.lower().replace(" ", "")
+
+    # VM CPU/Performance issues
+    if "cpu" in issue_lower and (
+        "vm" in resource_lower or "virtualmachine" in resource_lower
+    ):
         template_path = TEMPLATES_DIR / "vm_resize.bicep"
         if template_path.exists():
             return template_path.read_text()
 
-    if "dtu" in issue_type.lower() or "sql" in issue_type.lower():
+    # SQL Database issues
+    if "dtu" in issue_lower or "sql" in issue_lower or "database" in resource_lower:
         template_path = TEMPLATES_DIR / "sql_scale.sh"
         if template_path.exists():
             return template_path.read_text()

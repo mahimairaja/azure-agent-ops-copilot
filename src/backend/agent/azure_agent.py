@@ -16,37 +16,51 @@ mcp_client = MCPClient()
 
 
 class AzureOpsPlugin:
-    """Plugin wrapping our MCP tools for Semantic Kernel."""
+    """Plugin wrapping the MCP tools for Semantic Kernel."""
 
     @kernel_function(
         name="analyze_alert", description="Analyze an Azure Monitor alert by ID."
     )
-    def analyze_alert_wrapper(
+    async def analyze_alert_wrapper(
         self, alert_id: Annotated[str, "The ID of the alert to analyze"]
     ) -> str:
-        return mcp_client.execute("analyze_alert", alert_id=alert_id)
+        return await mcp_client.execute("analyze_alert", alert_id=alert_id)
 
     @kernel_function(
         name="get_resource_config",
         description="Get the configuration of an Azure resource.",
     )
-    def get_resource_config_wrapper(
+    async def get_resource_config_wrapper(
         self, resource_id: Annotated[str, "The ID of the resource"]
     ) -> str:
-        return mcp_client.execute("get_resource_config", resource_id=resource_id)
+        return await mcp_client.execute("get_resource_config", resource_id=resource_id)
 
     @kernel_function(
         name="generate_fix",
         description="Generate a fix for a specific issue type and resource type.",
     )
-    def generate_fix_wrapper(
+    async def generate_fix_wrapper(
         self,
         issue_type: Annotated[str, "The type of issue (e.g., 'High CPU')"],
         resource_type: Annotated[str, "The type of resource"],
     ) -> str:
-        return mcp_client.execute(
+        return await mcp_client.execute(
             "generate_fix", issue_type=issue_type, resource_type=resource_type
         )
+
+    @kernel_function(
+        name="get_all_logs",
+        description="Get all recent Azure Monitor logs/alerts. Use this to summarize alerts or get an overview.",
+    )
+    async def get_all_logs_wrapper(self) -> str:
+        return await mcp_client.execute("get_all_logs")
+
+    @kernel_function(
+        name="get_all_resource_configs",
+        description="Get all Azure resource configurations. Use this to get an overview of all resources.",
+    )
+    async def get_all_resource_configs_wrapper(self) -> str:
+        return await mcp_client.execute("get_all_resource_configs")
 
 
 async def get_agent() -> Kernel:
@@ -71,10 +85,17 @@ async def get_agent() -> Kernel:
 
 
 async def get_chat_agent(kernel: Kernel) -> ChatCompletionAgent:
+    tools = await mcp_client.list_tools()
     agent = ChatCompletionAgent(
         kernel=kernel,
         name="AzureOpsAgent",
-        instructions="You are an AI assistant that helps with Azure Operations. Use the available tools to analyze alerts and suggest fixes.",
+        instructions=f"""You are an AI assistant that helps with Azure Operations.
+
+You have access to the following tools:
+{tools}
+
+When users ask to "summarize logs" or "show all alerts", use the get_all_logs tool.
+When users ask about "all resources" or "resource overview", use the get_all_resource_configs tool.""",
         function_choice_behavior=FunctionChoiceBehavior.Auto(),
     )
     return agent
@@ -84,10 +105,15 @@ async def run_agent(query: str):
     kernel = await get_agent()
     agent = await get_chat_agent(kernel)
 
-    # Execute the agent
     final_response = []
-    async for response in agent.invoke(query):
-        if response.content:
-            final_response.append(response.content)
+    async for response_item in agent.invoke(query):
+        if hasattr(response_item, "message") and response_item.message:
+            message = response_item.message
+
+            if hasattr(message, "content") and message.content:
+                final_response.append(str(message.content))
+
+        elif hasattr(response_item, "content") and response_item.content:
+            final_response.append(str(response_item.content))
 
     return "".join(final_response)
